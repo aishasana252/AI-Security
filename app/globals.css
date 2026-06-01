@@ -1,0 +1,130 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+/* Google Fonts integration: Outfit for headings, Inter for body copy */
+
+:root {
+  /* Curated Dark Midnight Palette (Defensive AI / Cyber Security Aesthetic) */
+  --bg-primary: #07080e;
+  --bg-secondary: #0f111a;
+  --bg-tertiary: #161926;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-cyan: #06b6d4;
+  
+  /* State Colors */
+  --color-success: #10b981; /* Verified / Allowed */
+  --color-warning: #f59e0b; /* Warn / Educate */
+  --color-danger: #ef4444;  /* Blocked / Incident */
+  --color-info: #3b82f6;    /* Audit / Session */
+  
+  /* Border & Glassmorphic variables */
+  --border-glow: rgba(99, 102, 241, 0.15);
+  --border-muted: rgba(255, 255, 255, 0.05);
+  --bg-glass: rgba(15, 17, 26, 0.7);
+  --bg-glass-hover: rgba(22, 25, 38, 0.85);
+  
+  /* Fonts */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@theme {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================================
+   HIGH-FIDELITY GLASSMORPHIC UTILITIES
+   ============================================================================ */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-muted);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  background: var(--bg-glass-hover);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================================================
+   CYBER GRADIENTS & ANIMATIONS
+   ============================================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-blue) 50%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-glow {
+  position: relative;
+}
+
+.gradient-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.4), rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Micro-animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.pulse-glow {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
+
+/* Scrollbar customizations */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
