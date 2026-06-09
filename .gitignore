@@ -41,3 +41,13 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# terraform - sensitive files
+database/.terraform/
+database/.terraform.lock.hcl
+database/terraform.tfstate
+database/terraform.tfstate.backup
+database/check_tables.py
+database/main.tf
+database/migrate.py
+
