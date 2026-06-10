@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 908133483708.dkr.ecr.ap-southeast-2.amazonaws.com
+      - IMAGE_TAG=latest
+      - ECR_REPO=908133483708.dkr.ecr.ap-southeast-2.amazonaws.com/apexlyn-lens-repo
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $ECR_REPO:$IMAGE_TAG .
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image to ECR...
+      - docker push $ECR_REPO:$IMAGE_TAG
+      - echo Successfully pushed image to ECR!
